@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+   >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="100dp"
+            android:theme="@android:style/Widget.Material.ProgressBar"
+            android:visibility="visible"
+            />
+        <LinearLayout
+            android:id="@+id/layout_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/amiibo_image"
+                android:src="@mipmap/ic_launcher"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="30"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/amibo_series"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/amiibo_series"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/amibo_series"
+                    android:textSize="16sp"
+                    android:textColor="#000"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="30"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/character_name"
+                    android:textColor="?attr/actionModeSplitBackground"
+                    android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/amiibo_name"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/app_name"
+                    android:textSize="16sp"
+                    android:textColor="#000"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="30"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/release_eu"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/release_eu"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/app_name"
+                    android:textSize="16sp"
+                    android:textColor="#000"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="30"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/release_au"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/release_au"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/app_name"
+                    android:textSize="16sp"
+                    android:textColor="#000"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="30"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/release_jp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/release_jp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/app_name"
+                    android:textSize="16sp"
+                    android:textColor="#000"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="30"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/type"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/type"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/app_name"
+                    android:textSize="16sp"
+                    android:textColor="#000"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
