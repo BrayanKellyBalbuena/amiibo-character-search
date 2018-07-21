@@ -22,9 +22,14 @@ Android App that allows to find amiibo wii characters.
 <img src="https://github.com/BrayanKellyBalbuena/amiibo-character-search/blob/master/screenshots/Network%20Expection.png" align="center" height="500px" width="282px"/>
 
 ### Actual features:
-+ List of amiibos.
-+ Amiibos Details.
++ List of amiibos
++ Amiibos Details
 + Amiibos Search
+
+### Future features::
++ Navigation Menu
++ Share ScreenShot of Character
++ Save Favorite Character
 
 ### App Architecture:
 + Java
