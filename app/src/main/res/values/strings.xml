@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AmiiboaRecycleView</string>
+    <string name="app_name">Wii amiibos</string>
     <string name="search_hint">search character</string>
     <string name="button_search">Search</string>
     <string name="amibo_series">Amiibo Series:</string>
@@ -8,5 +8,7 @@
     <string name="release_au">Release Date (AU):</string>
     <string name="release_jp">Release Date (JP):</string>
     <string name="type">Type:</string>
-
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="amiibo_list">Amiibo List</string>
 </resources>
