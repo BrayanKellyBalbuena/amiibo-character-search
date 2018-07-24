@@ -1,6 +1,8 @@
 package edu.unapec.amiiboarecycleview;
 
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,6 +22,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import java.io.File;
 
 import java.util.ArrayList;
 
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private NavigationView mNavigation;
 
+
     AmiiboListDto ami = new AmiiboListDto();
 
     @Override
@@ -50,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mDrawLayer = (DrawerLayout) findViewById(R.id.draw_layer);
         mNavigation = (NavigationView) findViewById(R.id.nav_view);
         mDrawerToggle = new ActionBarDrawerToggle(
@@ -94,16 +99,11 @@ public class MainActivity extends AppCompatActivity {
 
         setTitle("Amiibo List");
         mProgressBar =(ProgressBar) findViewById(R.id.progress_bar);
-        mButtonSeacrh = (AppCompatButton) findViewById(R.id.button_search);
+
         mEditTextSearch = (EditText) findViewById(R.id.edit_text_search);
         mRecyclerView  = (RecyclerView) findViewById(R.id.recycler_view);
         mMario_404 = (AppCompatImageView) findViewById(R.id.mario_404);
-        mButtonSeacrh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                searchByCharacter();
-            }
-        });
+
         initImageBitmaps();
     }
 
@@ -218,7 +218,5 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Please enter a character", Toast.LENGTH_SHORT)
             .show();
         }
-
-
     }
 }
