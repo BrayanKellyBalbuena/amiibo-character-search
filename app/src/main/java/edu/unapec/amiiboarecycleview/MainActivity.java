@@ -1,6 +1,14 @@
 package edu.unapec.amiiboarecycleview;
 
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
@@ -8,10 +16,13 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import java.io.File;
 
 import java.util.ArrayList;
 
@@ -31,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
     private AppCompatButton mButtonSeacrh;
     private RecyclerView mRecyclerView;
     private AppCompatImageView mMario_404;
+    private DrawerLayout mDrawLayer;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private NavigationView mNavigation;
+
 
     AmiiboListDto ami = new AmiiboListDto();
 
@@ -40,19 +55,77 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setTitle("Character List");
+        mDrawLayer = (DrawerLayout) findViewById(R.id.draw_layer);
+        mNavigation = (NavigationView) findViewById(R.id.nav_view);
+        mDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                mDrawLayer,
+                R.string.open,
+                R.string.close){
+
+            @Override
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                getSupportActionBar().setTitle(R.string.amiibo_list);
+            }
+
+            @Override
+            public void onDrawerOpened(View view) {
+                super.onDrawerOpened(view);
+                getSupportActionBar().setTitle("Menu");
+            }
+        };
+
+        mDrawLayer.addDrawerListener(mDrawerToggle);
+
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+        mNavigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                switch(id)
+                {
+                    case R.id.save_offline:
+                        Toast.makeText(MainActivity.this, "Save offline",Toast.LENGTH_SHORT).show();
+                    default:
+                        return true;
+                }
+            }
+        });
+
+        setTitle("Amiibo List");
         mProgressBar =(ProgressBar) findViewById(R.id.progress_bar);
-        mButtonSeacrh = (AppCompatButton) findViewById(R.id.button_search);
+
         mEditTextSearch = (EditText) findViewById(R.id.edit_text_search);
         mRecyclerView  = (RecyclerView) findViewById(R.id.recycler_view);
         mMario_404 = (AppCompatImageView) findViewById(R.id.mario_404);
-        mButtonSeacrh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                searchByCharacter();
-            }
-        });
+
         initImageBitmaps();
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(mDrawerToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void initImageBitmaps(){
@@ -145,7 +218,5 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Please enter a character", Toast.LENGTH_SHORT)
             .show();
         }
-
-
     }
 }

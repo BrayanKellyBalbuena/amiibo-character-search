@@ -1,21 +1,30 @@
 package edu.unapec.amiiboarecycleview;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.io.File;
+
 import edu.unapec.amiiboarecycleview.dtos.AmiiboDto;
+import edu.unapec.amiiboarecycleview.utils.ScreenshotUtils;
 
 public class ItemDetailActivity extends AppCompatActivity {
 
@@ -28,6 +37,7 @@ public class ItemDetailActivity extends AppCompatActivity {
     private TextView mType;
     private ProgressBar mProgressBar;
     private LinearLayout layoutDetails;
+    private AppCompatButton mBtnShare;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,6 +53,19 @@ public class ItemDetailActivity extends AppCompatActivity {
         mReleaseJp = (TextView) findViewById(R.id.release_jp);
         mType = (TextView) findViewById(R.id.type);
         layoutDetails = (LinearLayout) findViewById(R.id.layout_details);
+
+        mBtnShare = (AppCompatButton) findViewById(R.id.btnShare);
+
+        implementClickEvents();
+    }
+
+    private void implementClickEvents() {
+        mBtnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                takeScreenshot();
+            }
+        });
     }
 
     @Override
@@ -80,5 +103,33 @@ public class ItemDetailActivity extends AppCompatActivity {
         mProgressBar.setVisibility(View.GONE);
         layoutDetails.setVisibility(View.VISIBLE);
 
+    }
+
+    private void takeScreenshot() {
+        Bitmap bitmap = ScreenshotUtils.getScreenShot(layoutDetails);
+
+
+            if(bitmap != null){
+                File saveFile = ScreenshotUtils.getMainDirectoryName(this);
+                File file = ScreenshotUtils.store(bitmap,  amiiboName.getText()
+                        + ".jpg", saveFile);
+
+                shareScreenshot(file);
+            } else
+            //If bitmap is null show toast message
+            Toast.makeText(this, R.string.screenshot_take_failed, Toast.LENGTH_SHORT).show();
+
+
+        }
+
+    private void shareScreenshot(File file) {
+        Uri uri = Uri.fromFile(file);//Convert file path into Uri for sharing
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.setType("image/*");
+        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
+        intent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.sharing_text));
+        intent.putExtra(Intent.EXTRA_STREAM, uri);//pass uri here
+        startActivity(Intent.createChooser(intent, getString(R.string.share_title)));
     }
 }
