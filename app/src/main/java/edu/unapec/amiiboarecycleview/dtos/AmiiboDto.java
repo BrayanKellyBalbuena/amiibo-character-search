@@ -1,6 +1,9 @@
 
 package edu.unapec.amiiboarecycleview.dtos;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -13,27 +16,36 @@ public class AmiiboDto implements Parcelable
     @SerializedName("amiiboSeries")
     @Expose
     private String amiiboSeries;
+
     @SerializedName("character")
     @Expose
     private String character;
+
     @SerializedName("gameSeries")
     @Expose
     private String gameSeries;
+
     @SerializedName("head")
     @Expose
     private String head;
+
     @SerializedName("image")
     @Expose
     private String image;
+
     @SerializedName("name")
     @Expose
     private String name;
+
     @SerializedName("release")
     @Expose
     private ReleaseDto releaseDto;
+
+    @PrimaryKey(autoGenerate = false)
     @SerializedName("tail")
     @Expose
     private String tail;
+
     @SerializedName("type")
     @Expose
     private String type;

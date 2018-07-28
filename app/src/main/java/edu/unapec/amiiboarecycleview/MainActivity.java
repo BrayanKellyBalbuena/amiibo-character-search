@@ -25,9 +25,13 @@ import android.widget.Toast;
 import java.io.File;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.unapec.amiiboarecycleview.Api.AmiiboApi;
+import edu.unapec.amiiboarecycleview.dataAccess.Repositories.AmiiboRepository;
 import edu.unapec.amiiboarecycleview.dtos.AmiiboListDto;
+import edu.unapec.amiiboarecycleview.models.Amiibo;
+import edu.unapec.amiiboarecycleview.models.AmiiboWithAllRelease;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawLayer;
     private ActionBarDrawerToggle mDrawerToggle;
     private NavigationView mNavigation;
+    AmiiboRepository mRepository;
+    List<AmiiboWithAllRelease> amiiboList=null;
+
 
 
     AmiiboListDto ami = new AmiiboListDto();
@@ -54,6 +61,15 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mRepository = new AmiiboRepository(this);
+        mRepository.insert(new Amiibo());
+        amiiboList = mRepository.getAllWithRelease();
+        new Runnable(){
+            @Override
+            public void run() {
+                amiiboList = mRepository.getAllWithRelease();
+            }
+        };
 
         mDrawLayer = (DrawerLayout) findViewById(R.id.draw_layer);
         mNavigation = (NavigationView) findViewById(R.id.nav_view);
