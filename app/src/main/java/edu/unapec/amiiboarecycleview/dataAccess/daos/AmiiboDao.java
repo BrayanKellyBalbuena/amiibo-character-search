@@ -27,4 +27,7 @@ public interface  AmiiboDao {
 
     @Delete
     public void delete(Amiibo amiibo);
+
+    @Query("DELETE FROM amiibos")
+    public void deleteAll();
 }

@@ -34,7 +34,7 @@ public class Amiibo {
     public String name;
 
     @Ignore
-    public ReleaseDto releaseDto;
+    public Release release;
 
     public String tail;
 
@@ -48,7 +48,7 @@ public class Amiibo {
     public Amiibo(Long id, String amiiboSeries, String character,
                   String gameSeries, String head,
                   String image, String name,
-                  ReleaseDto releaseDto, String tail, String type) {
+                  Release release, String tail, String type) {
 
         this.id = id;
         this.amiiboSeries = amiiboSeries;
@@ -57,7 +57,7 @@ public class Amiibo {
         this.head = head;
         this.image = image;
         this.name = name;
-        this.releaseDto = releaseDto;
+        this.release = release;
         this.tail = tail;
         this.type = type;
     }

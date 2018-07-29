@@ -18,4 +18,7 @@ public interface ReleaseDao{
 
     @Delete
     public void delete (Release release);
+
+    @Query("DELETE  FROM releases")
+    public void deleteAll();
 }

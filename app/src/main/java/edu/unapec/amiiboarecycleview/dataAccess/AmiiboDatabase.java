@@ -29,9 +29,7 @@ public abstract class AmiiboDatabase extends RoomDatabase {
                 if(INSTANCE == null){
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             AmiiboDatabase.class, NAME)
-                            .fallbackToDestructiveMigration()
                             .allowMainThreadQueries()
-                            .addCallback(sAmiiboDatabaseCallback)
                             .build();
                 }
             }

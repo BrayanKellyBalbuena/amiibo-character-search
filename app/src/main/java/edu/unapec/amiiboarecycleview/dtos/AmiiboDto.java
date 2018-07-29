@@ -78,6 +78,8 @@ public class AmiiboDto implements Parcelable
         this.type = ((String) in.readValue((String.class.getClassLoader())));
     }
 
+
+
     public AmiiboDto() {
     }
 
