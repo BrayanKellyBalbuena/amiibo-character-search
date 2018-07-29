@@ -27,7 +27,7 @@ Android App that allows to find amiibo wii characters.
 ## View offline
 <img src="https://github.com/BrayanKellyBalbuena/amiibo-character-search/blob/master/screenshots/view_offline.png" align="center" height="500px" width="282px"/>
 
-## Share Menu
+## Share ScreenShot of Character
 <img src="https://github.com/BrayanKellyBalbuena/amiibo-character-search/blob/master/screenshots/share.png" align="center" height="500px" width="282px"/>
 
 ### Actual features:
@@ -45,3 +45,4 @@ Android App that allows to find amiibo wii characters.
 + Glinse
 + Protofit
 + GSON Converter
++ Android Room

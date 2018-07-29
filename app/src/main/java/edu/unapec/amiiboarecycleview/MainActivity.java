@@ -76,28 +76,9 @@ public class MainActivity extends AppCompatActivity {
 //        releaseRepository.deleteAll();
 //        amiiboRepository.deleteAll();
         Amiibo a = new Amiibo();
-//        a.character = "mario";
-//        Release r = new Release();
-//        a.image = "https://iloveradio.de/fileadmin/coverbilder/ivangough_inmymind.jpg";
-//        r.na = "jo";
-//        a.release = r;
-//        amiiboRepository.insert(a);
-//        amiiboWithAllRelease = amiiboRepository.getAllWithRelease();
+
 
         initImageBitmaps();
-
-
-        new Runnable(){
-            @Override
-            public void run() {
-                amiiboWithAllRelease = amiiboRepository.getAllWithRelease();
-            }
-        };
-//        AmiiboDto a = new AmiiboDto();
-//        a.setImage("https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_00000100-00190002.png");
-//        a.setTail("00940102");
-//
-//        new RetrieveFeedTask().execute(a);
 
         mDrawLayer = (DrawerLayout) findViewById(R.id.draw_layer);
         mNavigation = (NavigationView) findViewById(R.id.nav_view);
