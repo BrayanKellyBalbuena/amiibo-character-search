@@ -9,9 +9,18 @@ import android.util.Log;
 import android.view.View;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
 
 import edu.unapec.amiiboarecycleview.R;
+import edu.unapec.amiiboarecycleview.dtos.AmiiboDto;
+import edu.unapec.amiiboarecycleview.models.Amiibo;
 
 import static android.provider.Settings.Global.getString;
 import static android.support.v4.content.ContextCompat.startActivity;
@@ -31,7 +40,7 @@ public class ScreenshotUtils {
 
     public static File getMainDirectoryName(Context context){
         File mainDir = new File(
-                context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "Ammibo");
+                context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "AmiiboScreenShots");
 
         if(!mainDir.exists()){
             if(mainDir.mkdir())
@@ -54,5 +63,44 @@ public class ScreenshotUtils {
             e.printStackTrace();
         }
         return file;
+    }
+
+    public static String saveImageFromUrl(Context c, AmiiboDto amiiboDto){
+        try{
+            String localpath;
+            URL url = new URL(amiiboDto.getImage());
+            InputStream input = url.openStream();
+
+            try {
+                //The sdcard directory e.g. '/sdcard' can be used directly, or
+                //more safely abstracted with getExternalStorageDirectory()
+                File storagePath = new File( c.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "AmiiboScreenShots");
+                localpath = storagePath +"/"+ amiiboDto.getTail() + ".png";
+                OutputStream output = new FileOutputStream ( localpath);
+                int b = 1;
+
+                try {
+                    int aReasonableSize = 1000;
+                    byte[] buffer = new byte[aReasonableSize];
+                    int bytesRead = 0;
+                    while ((bytesRead = input.read(buffer, 0, buffer.length)) >= 0) {
+                        output.write(buffer, 0, bytesRead);
+                    }
+                } finally {
+                    output.close();
+                }
+            } finally {
+                input.close();
+            }
+            return localpath;
+        }catch (MalformedURLException ex){
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
