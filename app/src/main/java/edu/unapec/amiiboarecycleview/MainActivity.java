@@ -194,6 +194,8 @@ public class MainActivity extends AppCompatActivity {
             amiiboListDto = ModelMapping.amiiboWithAllReleaseToAmiiboListDto(amiiboWithAllRelease);
 
             initRecyclerView();
+            Toast.makeText(MainActivity.this, "View Offline Data", Toast.LENGTH_LONG)
+                    .show();
             mProgressBar.setVisibility(View.GONE);
 
         } else {
@@ -214,12 +216,6 @@ public class MainActivity extends AppCompatActivity {
                     ImageUtil imageUtil = new ImageUtil();
                     imageUtil.saveImages(MainActivity.this ,amiiboListDto.getAmiibos());
 
-//                    List<Amiibo> amiib = ModelMapping.AmiiboListDToAmiiboList(amiiboListDto);
-////
-//                    for (Amiibo  a : amiib
-//                         ) {
-//                        amiiboRepository.insert(a);
-//                    }
                     List<Amiibo> amiibos = ModelMapping.AmiiboListDToAmiiboList(amiiboListDto);
                     amiiboRepository.InsertAll(amiibos);
 
